@@ -21,9 +21,9 @@
 
 | 队列 | 方向 | 说明 |
 | --- | --- | --- |
-| `proxy.uplink` | 网关 → dtm | 设备上行报文（原始字节透传） |
-| `platform.uplink` | dtm → 后台 | 同上行，后台消费 |
-| `platform.downlink` | 后台 → dtm | 下行指令（原始字节透传） |
+| `proxy.uplink` | 网关 → dtm | 设备上行报文（字节透传；载荷为网关 `ServiceRequest` JSON 信封，dtm 不解析仅转发） |
+| `platform.uplink` | dtm → 后台 | 同上行（`ServiceRequest` JSON 信封），后台经 `UplinkMessage` 消费 |
+| `platform.downlink` | 后台 → dtm | 下行指令（字节透传；载荷为 `DownlinkMessage` JSON 信封） |
 | `proxy.downlink` | dtm → 网关 | 同下行，网关消费 |
 | `iot.dlq` | 死信 | 处理失败的消息 |
 
